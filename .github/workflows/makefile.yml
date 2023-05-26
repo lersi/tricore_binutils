@@ -50,7 +50,7 @@ jobs:
 
     - name: configure
       run: |
-        mkdir ${{env.PREFIX}}
+        mkdir -p ${{env.PREFIX}}
         ./configure --prefix=${{env.PREFIX}} --target=${{env.TARGET}} --enable-lto --with-sysroot --disable-nls --disable-werror
 
     - name: build
@@ -63,5 +63,5 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         name: file_system
-        path: /opt
+        path: ${{env.PREFIX}}
     
