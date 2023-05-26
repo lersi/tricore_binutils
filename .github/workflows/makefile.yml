@@ -9,7 +9,7 @@ on:
 
 
 env:
-  PREFIX: /opt
+  PREFIX: /opt/tricore
   TARGET: tricore
   CC: gcc-9 
   CXX: g++-9 
@@ -51,7 +51,7 @@ jobs:
     - name: configure
       run: |
         mkdir -p ${{env.PREFIX}}
-        ./configure --prefix="${{env.PREFIX}}" --target=${{env.TARGET}} --enable-lto --with-sysroot --disable-nls --disable-werror
+        ./configure --prefix=$PREFIX --target=${{env.TARGET}} --enable-lto --with-sysroot --disable-nls --disable-werror
 
     - name: build
       run: make -j 10
