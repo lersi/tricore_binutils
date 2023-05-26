@@ -9,7 +9,7 @@ on:
 
 
 env:
-  PERFIX: /opt
+  PREFIX: /opt
   TARGET: tricore
   CC: gcc-9 
   CXX: g++-9 
@@ -49,7 +49,9 @@ jobs:
          texinfo
 
     - name: configure
-      run: ./configure --prefix=${{env.PREFIX}} --target=${{env.TARGET}} --enable-lto --with-sysroot --disable-nls --disable-werror
+      run: |
+        mkdir ${{env.PREFIX}}
+        ./configure --prefix=${{env.PREFIX}} --target=${{env.TARGET}} --enable-lto --with-sysroot --disable-nls --disable-werror
 
     - name: build
       run: make -j 10
