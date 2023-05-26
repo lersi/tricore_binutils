@@ -5,10 +5,11 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
 
 
 env:
-  PREFIX: /opt
+  PERFIX: /opt
   TARGET: tricore
   CC: gcc-9 
   CXX: g++-9 
@@ -47,7 +48,7 @@ jobs:
        texinfo
 
     - name: configure
-      run: ./configure --prefix=${{PREFIX}} --target=${{env.TARGET}} --enable-lto --with-sysroot --disable-nls --disable-werror
+      run: ./configure --prefix=${{env.PREFIX}} --target=${{env.TARGET}} --enable-lto --with-sysroot --disable-nls --disable-werror
 
     - name: build
       run: make -j 10
