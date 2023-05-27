@@ -37,9 +37,12 @@ jobs:
     - name: install
       run: make install
       
+    - name: tar files
+      run: tar -cvf file_system.tar ${{env.PREFIX}}
+      
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
         name: file_system
-        path: ${{env.PREFIX}}
+        path: file_system.tar
     
